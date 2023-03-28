@@ -286,7 +286,7 @@ function local_clac_generate_report($userid, $categoryid, $mode) {
                 if ($cm->modname == 'quiz') {
                     $quizinstance = $cm->instance;
                     $quizrec = $DB->count_records('quiz_attempts', array('userid' => $userid, 'quiz' => $quizinstance));
-                    $gradeitem = $DB->get_field('grade_items', 'id', array('iteminstance' => $quizinstance));
+                    $gradeitem = $DB->get_field('grade_items', 'id', array('iteminstance' => $quizinstance, 'itemmodule' => 'quiz'));
                     $grade = 0;
                     if ($DB->get_field('grade_grades', 'finalgrade', array('userid' => $userid, 'itemid' => $gradeitem ))) {
                         $graderec = $DB->get_record('grade_grades', array('userid' => $userid, 'itemid' => $gradeitem));
@@ -466,7 +466,7 @@ function local_clac_generate_report($userid, $categoryid, $mode) {
                            AND ra.roleid = 9
                       ORDER BY ctx.depth DESC, ra.component, u.lastname, u.firstname, u.id";
 
-                $supervisors = $DB->get_records_select_sql($sqlsup, array());
+                $supervisors = $DB->get_records_sql($sqlsup, array());
                 if ($supervisors) {
                     foreach ($supervisors as $supervisor) {
                         $ctname = $supervisor->firstname.' '.$supervisor->lastname;

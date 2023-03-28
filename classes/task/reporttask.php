@@ -21,8 +21,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 namespace local_clac\task;
+defined('MOODLE_INTERNAL') || die();
 
 class reporttask extends \core\task\scheduled_task {
 
